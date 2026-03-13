@@ -2,7 +2,7 @@ name: Deploy to VPS
 
 on:
   workflow_run:
-    workflows: ["Build and Push Docker Image"] # fajnie ezzz
+    workflows: ["Build and Push Docker Image"] # fajnie
     types:
       - completed
     branches: [master]  # Zmień na [main], jeśli taką masz nazwę gałęzi
@@ -27,12 +27,12 @@ jobs:
             docker stop my-app || true
             docker rm my-app || true
 
-            # Pobierz najnowszy obraz (używamy github.repository_owner dla halfiscrayfish)
-            docker pull ghcr.io/$(echo ${{ github.repository_owner }}| tr '[:upper:]' '[:lower:]')/my-first_cicd:latest 
+            # Pobierz najnowszy obraz (używamy github.repository_owner dla HalfIsCrafish)
+            docker pull ghcr.io/${{ github.repository_owner }}/my-first_cicd:latest
 
             # Uruchom kontener
             docker run -d \
               --name my-app \
               --restart unless-stopped \
               -p 8${{ secrets.VPS_PORT_NUMBER }}:80 \
-              ghcr.io/$(echo ${{ github.repository_owner }}| tr '[:upper:]' '[:lower:]')/my-first_cicd:latest 
+              ghcr.io/${{ github.repository_owner }}/my-first_cicd:latest

@@ -7,5 +7,5 @@ def hello():
     return {"message": "Hello World"}
 
 @app.get("/add/{a}/{b}")
-def add(a: int, b: int):
+def add(a: int, b: int): # inty
     return {"result": a + b}
