@@ -27,7 +27,7 @@ jobs:
             docker stop my-app || true
             docker rm my-app || true
 
-            # Pobierz najnowszy obraz (używamy github.repository_owner dla HalfIsCrafish)
+            # Pobierz najnowszy obraz (używamy github.repository_owner dla halfiscrayfish)
             docker pull ghcr.io/${{ github.repository_owner }}/my-first_cicd:latest
 
             # Uruchom kontener
